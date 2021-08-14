@@ -2,7 +2,7 @@
   <div class="home">
     <input type="search" v-model="searchTerm" placeholder="Search by Name">
     <hr />
-    <div v-for="student in filterBy(students, searchTerm, 'firstName')" v-bind:key="student.id">
+    <div v-for="student in filterBy(students, searchTerm, 'firstName', 'lastName')" v-bind:key="student.id">
       <div>
       <img id="left" v-bind:src="student.pic"/>
       <h1>{{ student.firstName }} {{ student.lastName}}</h1>
