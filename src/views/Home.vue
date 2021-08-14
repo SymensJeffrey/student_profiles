@@ -1,7 +1,8 @@
 <template>
   <div class="home">
+    <input type="search" v-model="searchTerm" placeholder="Search by Name">
     <hr />
-    <div v-for="student in students" v-bind:key="student.id">
+    <div v-for="student in filterBy(students, searchTerm, 'firstName')" v-bind:key="student.id">
       <div>
       <img id="left" v-bind:src="student.pic"/>
       <h1>{{ student.firstName }} {{ student.lastName}}</h1>
@@ -27,11 +28,9 @@ h1 {
 body{
   font-family: 'Raleway', sans-serif;
 }
-
 hr {
   color:rgb(163, 163, 163);
 }
-
 body img{
   width: 200px;
   border: 1px solid;
@@ -39,18 +38,30 @@ body img{
   border-radius: 50%;
   margin-right: 3em;
 }
-
 #left{
   float: left
+}
+input {
+  width: 100%;
+  border-width: 0px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+}
+input[type=search]:focus{
+  outline: none;
 }
 </style>
 
 <script>
   import axios from "axios";
+  import Vue2Filters from 'vue2-filters'
+
   export default {
+  mixins: [Vue2Filters.mixin],
   data: function () {
     return {
       students: [],
+      searchTerm: "",
     };
   },
   created: function () {
