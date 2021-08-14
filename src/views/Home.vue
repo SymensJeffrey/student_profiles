@@ -6,7 +6,7 @@
       <p>{{ student.email }}</p>
       <p>{{ student.company }}</p>
       <p>{{ student.skill }}</p>
-      <p>{{ student.grades }}</p>
+      <p>{{ student.average }}</p>
       <p>{{ student }}</p>
 
       <hr />
@@ -37,13 +37,11 @@
          response.data.students[i].grades = response.data.students[i].grades.map(Number)
          var grades = response.data.students[i].grades = response.data.students[i].grades.map(Number)
          var sum = grades.reduce((previous, current) => current += previous);
-         console.log(sum/grades.length)
 
-
-        //  var studentAverage = {}
-        //  studentAverage.id = "average";
-        //  studentAverage.quantity = sum / grades.length;
-        //  response.data.students[i].push(studentAverage);
+         var studentAverage = {}
+         studentAverage.id = "average";
+         studentAverage.quantity = sum / grades.length;
+         console.log(response.data.students[i].average = (sum / grades.length))
         }
 
         console.log(response.data.students)
