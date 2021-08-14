@@ -1,7 +1,16 @@
 <template>
   <div class="home">
-    <h1>Student Portal</h1>
-    <p> {{ students }} </p>
+    <div v-for="student in students" v-bind:key="student.id">
+      <p><img v-bind:src="student.pic"/></p>
+      <h3>{{ student.firstName }} {{ student.lastName}}</h3>
+      <p>{{ student.email }}</p>
+      <p>{{ student.company }}</p>
+      <p>{{ student.skill }}</p>
+      <p>{{ student.grades }}</p>
+      <p>{{ student }}</p>
+
+      <hr />
+    </div>
   </div>
 </template>
 
@@ -20,10 +29,24 @@
   },
   methods: {
     indexStudents: function () {
-      console.log("index")
       axios.get("https://api.hatchways.io/assessment/students").then((response) => {
-        console.log("students index", response);
-        this.students = response.data;
+        console.log("students index", response.data);
+        this.students = response.data.students;
+        
+        for (let i = 0; i < 8; i++){
+         response.data.students[i].grades = response.data.students[i].grades.map(Number)
+         var grades = response.data.students[i].grades = response.data.students[i].grades.map(Number)
+         var sum = grades.reduce((previous, current) => current += previous);
+         console.log(sum/grades.length)
+
+
+        //  var studentAverage = {}
+        //  studentAverage.id = "average";
+        //  studentAverage.quantity = sum / grades.length;
+        //  response.data.students[i].push(studentAverage);
+        }
+
+        console.log(response.data.students)
       });
     },
   },
