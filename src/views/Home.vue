@@ -1,18 +1,31 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Student Portal</h1>
+    <p> {{ students }} </p>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+<style></style>
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+<script>
+  import axios from "axios";
+  export default {
+  data: function () {
+    return {
+      students: [],
+    };
+  },
+  created: function () {
+    this.indexStudents();
+  },
+  methods: {
+    indexStudents: function () {
+      console.log("index")
+      axios.get("https://api.hatchways.io/assessment/students").then((response) => {
+        console.log("students index", response);
+        this.students = response.data;
+      });
+    },
+  },
+};
 </script>
