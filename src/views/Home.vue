@@ -7,8 +7,6 @@
       <p>{{ student.company }}</p>
       <p>{{ student.skill }}</p>
       <p>{{ student.average }}</p>
-      <p>{{ student }}</p>
-
       <hr />
     </div>
   </div>
