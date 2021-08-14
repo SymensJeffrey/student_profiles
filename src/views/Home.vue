@@ -1,18 +1,49 @@
 <template>
   <div class="home">
+    <hr />
     <div v-for="student in students" v-bind:key="student.id">
-      <p><img v-bind:src="student.pic"/></p>
-      <h3>{{ student.firstName }} {{ student.lastName}}</h3>
-      <p>{{ student.email }}</p>
-      <p>{{ student.company }}</p>
-      <p>{{ student.skill }}</p>
-      <p>{{ student.average }}</p>
-      <hr />
+      <div>
+      <img id="left" v-bind:src="student.pic"/>
+      <h1>{{ student.firstName }} {{ student.lastName}}</h1>
+        <div>
+          <p>Email: {{ student.email }}</p>
+          <p>Company: {{ student.company }}</p>
+          <p>Skill: {{ student.skill }}</p>
+          <p>Average: {{ student.average }}%</p>
+          <br>
+          <hr />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<style></style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+h1 {
+  font-weight: 800;
+}
+body{
+  font-family: 'Raleway', sans-serif;
+}
+
+hr {
+  color:rgb(163, 163, 163);
+}
+
+body img{
+  width: 200px;
+  border: 1px solid;
+  border-color: rgb(163, 163, 163);
+  border-radius: 50%;
+  margin-right: 3em;
+}
+
+#left{
+  float: left
+}
+</style>
 
 <script>
   import axios from "axios";
@@ -39,7 +70,7 @@
          var studentAverage = {}
          studentAverage.id = "average";
          studentAverage.quantity = sum / grades.length;
-         console.log(response.data.students[i].average = (sum / grades.length))
+         (response.data.students[i].average = (sum / grades.length))
         }
 
         console.log(response.data.students)
